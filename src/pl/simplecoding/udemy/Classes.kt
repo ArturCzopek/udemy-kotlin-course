@@ -28,7 +28,8 @@ class FancyCar(company: String, model: String) : Car(company, model) {
 
 
 // 4.3 - data classes
-data class Plane(override val company: String, override val model: String, val capacity: Int) : Transport {    init {
+// 5.5 - named & default parameters
+data class Plane(override val company: String, override val model: String, val capacity: Int = 100) : Transport {    init {
     println("Creating plane...")
 }
 
@@ -80,7 +81,7 @@ fun main(args: Array<String>) {
     println(fancyCar.fullName)
     println(fancyCar.price)
 
-    val plane = Plane("CheapFlights", "XXX", 100)
+    val plane = Plane("CheapFlights", "XXX")
     val biggerPlane = plane.copy(capacity = 200)
     println(plane.capacity)
     println(biggerPlane.capacity)

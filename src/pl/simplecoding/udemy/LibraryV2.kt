@@ -63,6 +63,11 @@ import java.time.LocalDateTime
  * create extension function "new" which add book to library
  */
 
+/**
+ * 5.5 - named & default parameter
+ * add book by using constructor with naming convention
+ */
+
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
     constructor(name: String) : this(currentId, name, LocalDateTime.now()) {
