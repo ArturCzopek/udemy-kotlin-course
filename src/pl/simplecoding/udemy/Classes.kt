@@ -44,7 +44,7 @@ interface Transport {
 }
 
 fun main(args: Array<String>) {
-    val car = Car("company", "Model")
+    val car = Car(defaultName, "Model")
     val carWithoutModel = Car("Company2")
     println(car.model)
     println(car.fullName)

@@ -31,7 +31,7 @@ import java.time.LocalDateTime
  */
 
 /**
- * 4.5
+ * 4.5 - companion object
  * companion object - user
  * - current id = 1
  * - fun currentUserId - returns id
@@ -39,15 +39,23 @@ import java.time.LocalDateTime
  * new constructor only with name, main constructor should be private, in new constructor increment comp. obj. id
  */
 
+/**
+ * 4.6 - (no)class
+ * use config fields
+ * store there:
+ * - library name - add new field in library
+ * - start user id
+ */
+
 
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
-    constructor(name: String): this(currentId, name, LocalDateTime.now()) {
+    constructor(name: String) : this(currentId, name, LocalDateTime.now()) {
         currentId++
     }
 
     companion object {
-        private var currentId = 1L
+        private var currentId = startUserId
 
         fun currentUserId() = currentId
     }
@@ -61,6 +69,7 @@ class Library {
         println("Creating Library")
     }
 
+    val name = libraryName
     val books = mutableListOf<Book>()
     private val users = mutableListOf<User>()
 
@@ -84,6 +93,7 @@ fun main(args: Array<String>) {
     library.books.add(effectiveJava)
     library.books.add(harryPotter)
     println("Books amount (titles): ${library.books.size}")
+    println("Library name ${library.name}")
 
     println("Current id for a new user ${User.currentUserId()}")
     library.addUser("Artur")
