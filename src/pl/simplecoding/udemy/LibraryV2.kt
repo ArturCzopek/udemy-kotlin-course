@@ -47,6 +47,11 @@ import java.time.LocalDateTime
  * - start user id
  */
 
+/**
+ * 4.7 - objects, inline objects
+ * convert Library to singleton
+ */
+
 
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
@@ -63,7 +68,7 @@ data class User private constructor(val id: Long, val name: String, val created:
 
 class Book(val title: String, val author: String, val releaseYear: Int, var available: Boolean = true)
 
-class Library {
+object Library {
 
     init {
         println("Creating Library")
@@ -89,14 +94,13 @@ fun main(args: Array<String>) {
 
     val harryPotter = Book("Harry Potter", "J.K. Rowling", 2000)
 
-    val library = Library()
-    library.books.add(effectiveJava)
-    library.books.add(harryPotter)
-    println("Books amount (titles): ${library.books.size}")
-    println("Library name ${library.name}")
+    Library.books.add(effectiveJava)
+    Library.books.add(harryPotter)
+    println("Books amount (titles): ${Library.books.size}")
+    println("Library name ${Library.name}")
 
     println("Current id for a new user ${User.currentUserId()}")
-    library.addUser("Artur")
+    Library.addUser("Artur")
     println("Current id for a new user ${User.currentUserId()}")
-    println("Users: ${library.usersAmount}")
+    println("Users: ${Library.usersAmount}")
 }

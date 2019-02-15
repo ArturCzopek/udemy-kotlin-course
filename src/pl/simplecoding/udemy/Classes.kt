@@ -43,6 +43,22 @@ interface Transport {
     fun displayName() = "$company $model"
 }
 
+// 4.7 - objects, inline objects
+object Garage {
+    init {
+        println("Creating garage...")
+    }
+
+    private val transports = mutableListOf<Transport>()
+
+    fun addTransport(transport: Transport) {
+        transports.add(transport)
+    }
+
+    val transportsInGarage: Int
+        get() = transports.size
+}
+
 fun main(args: Array<String>) {
     val car = Car(defaultName, "Model")
     val carWithoutModel = Car("Company2")
@@ -74,4 +90,22 @@ fun main(args: Array<String>) {
 //    FancyCar.Companion.sayMyName() // will not work
     println("Wheels: ${Car.wheels}")
 //    println("Wheels: ${car.wheels}") // will not work
+
+    println(Garage)
+    val garage = Garage
+    println("Are the same? ${garage === Garage}")
+    garage.addTransport(plane)
+    garage.addTransport(biggerPlane)
+    println("Transports in garage ${garage.transportsInGarage}")
+    println("Transports in Garage ${Garage.transportsInGarage}")
+
+    Garage.addTransport(object : Transport {
+        override val company: String
+            get() = "Hawk"
+        override val model: String
+            get() = "Black"
+    })
+
+    println("Transports in garage ${garage.transportsInGarage}")
+    println("Transports in Garage ${Garage.transportsInGarage}")
 }
