@@ -67,7 +67,7 @@ object Garage {
     // 5.4 - infix & extension functions
     infix fun only(company: String) = transports.filter { it.company == company }
 
-    // 5.6 - functions on collections
+    // 5.6 - collection functions
     fun getGroupedTransportsByClasses() = transports.groupBy { it::class }
 }
 
@@ -142,4 +142,21 @@ fun main(args: Array<String>) {
 
 //    listOf<Transport>().add() // will not work
 
+    // 5.7 - functions as objects
+    val converter: (String) -> String = { text: String -> "$$$$$text$$$$"}
+    val converterTwo: (String) -> String = { "!!!$it!!!"}
+    val converterThree = { one: String, two: String -> "!!!$one!!! !!!$two!!!"}
+    val converterFour = { word: String, fn: (String) -> String -> fn(word) }
+    println(converter("Test"))
+    println(converterTwo("Test2"))
+    println(converterThree("Test3a", "Test3b"))
+    println(converterFour("Test4a", converter))
+    println(converterFour("Test4b") {"%$it%"})
+    println(Converter().action("Test5"))
+    println(Converter(converterTwo).action("Test6"))
+    println(Converter { "@$it@" }.action("Test7"))
+}
+
+class Converter(val fn: (String) -> String = { "^$it^"}) {
+    fun action(word: String) = fn(word)
 }

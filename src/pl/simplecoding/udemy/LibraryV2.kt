@@ -73,6 +73,13 @@ import java.time.LocalDateTime
  * create function which returns books released later than 2000 and sort them descending (you can add some books)
  */
 
+/**
+ * 5.7 - functions as objects
+ * add function to book as a filed - displayer: (Book) -> String - default implementation displays info about title and author
+ * - add display function which gonna use this from above
+ * - Library - add function displayBooks - display all books by their display
+ * - use those functions
+ */
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
     constructor(name: String) : this(currentId, name, LocalDateTime.now()) {
@@ -86,8 +93,16 @@ data class User private constructor(val id: Long, val name: String, val created:
     }
 }
 
-data class Book(val title: String, val author: String, val releaseYear: Int, var available: Boolean = true)
 
+data class Book(
+        val title: String,
+        val author: String,
+        val releaseYear: Int,
+        var available: Boolean = true,
+        val displayer: (Book) -> String = {"'${it.title}' - ${it.author}"}
+) {
+    fun display() = displayer(this)
+}
 object Library {
 
     init {
@@ -106,6 +121,8 @@ object Library {
     operator fun rem(name: String) = this.addUser(name)
 
     infix fun getBooksReleasedAfter(releaseYear: Int) = books.filter { it.releaseYear > releaseYear }.sortedByDescending { it.releaseYear }
+
+    fun displayBooks() = books.map(Book::display).forEach(::println)
 }
 
 fun main(args: Array<String>) {
@@ -123,7 +140,7 @@ fun main(args: Array<String>) {
             author = "Joshua Bloch"
     )
 
-    val harryPotter = Book("Harry Potter", "J.K. Rowling", 2000)
+    val harryPotter = Book("Harry Potter", "J.K. Rowling", 2000, true) {"xxx ${it.title} xxx"}
 
     Library new effectiveJava
     Library new effectiveJava2
@@ -138,4 +155,6 @@ fun main(args: Array<String>) {
 
     val booksAfter2000 = Library getBooksReleasedAfter 2000
     booksAfter2000.forEach { println(it) }
+
+    Library.displayBooks()
 }
