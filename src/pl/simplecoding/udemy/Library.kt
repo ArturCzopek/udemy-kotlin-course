@@ -23,4 +23,16 @@ fun main(args: Array<String>) {
 //    releaseYear++ do not work
     booksInMagazine++
     println(booksInMagazine)
+
+    /**
+     * 3.3 - null?
+     * publisher - mutable - string - nullable
+     * "Not known" if null
+     */
+
+    var publisher: String? = "PWN"
+    println(publisher)
+
+    publisher = null
+    println(publisher ?: "Not known")
 }

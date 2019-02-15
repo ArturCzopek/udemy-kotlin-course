@@ -26,4 +26,14 @@ fun main(args: Array<String>) {
 
 //    mutableString = null
 
+    // 3.3 - null?
+    var nullableString: String? = "I may be null"
+    println(nullableString)
+
+    nullableString = null
+    println(nullableString)
+
+    println("Length of mutable string: " + mutableString.length)
+    println("Length of nullable string: " + (nullableString?.length ?:0))
+
 }
