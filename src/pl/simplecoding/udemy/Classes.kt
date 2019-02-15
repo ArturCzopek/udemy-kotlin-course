@@ -7,6 +7,12 @@ open class Car constructor(override val company: String, override val model: Str
 
     open val fullName: String
         get() = "$company $model"
+
+    // 4.5 - companion object
+    companion object {
+        const val wheels = 4
+        fun sayMyName() = println("I'm a car!")
+    }
 }
 
 class FancyCar(company: String, model: String) : Car(company, model) {
@@ -14,6 +20,8 @@ class FancyCar(company: String, model: String) : Car(company, model) {
         get() = "I am fancy car! I am $company $model"
 
     val price = 99999.99
+
+    //    companion object: Car.Companion will not work
 }
 
 //class MoreFancyCar(): FancyCar("Company", "Model") // will not work
@@ -60,4 +68,10 @@ fun main(args: Array<String>) {
     println("Transport ${transport.displayName()}")
     transport = car
     println("Transport ${transport.displayName()}")
+
+    Car.Companion.sayMyName()
+    Car.sayMyName()
+//    FancyCar.Companion.sayMyName() // will not work
+    println("Wheels: ${Car.wheels}")
+//    println("Wheels: ${car.wheels}") // will not work
 }

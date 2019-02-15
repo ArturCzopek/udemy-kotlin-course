@@ -30,8 +30,28 @@ import java.time.LocalDateTime
  * user amount - proper getter
  */
 
+/**
+ * 4.5
+ * companion object - user
+ * - current id = 1
+ * - fun currentUserId - returns id
+ *
+ * new constructor only with name, main constructor should be private, in new constructor increment comp. obj. id
+ */
 
-data class User(val id: Long, val name: String, val created: LocalDateTime)
+
+data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
+
+    constructor(name: String): this(currentId, name, LocalDateTime.now()) {
+        currentId++
+    }
+
+    companion object {
+        private var currentId = 1L
+
+        fun currentUserId() = currentId
+    }
+}
 
 class Book(val title: String, val author: String, val releaseYear: Int, var available: Boolean = true)
 
@@ -47,7 +67,7 @@ class Library {
     val usersAmount: Int
         get() = users.size
 
-    fun addUser(name: String) = users.add(User(users.size.toLong(), name, LocalDateTime.now()))
+    fun addUser(name: String) = users.add(User(name))
 }
 
 fun main(args: Array<String>) {
@@ -65,6 +85,8 @@ fun main(args: Array<String>) {
     library.books.add(harryPotter)
     println("Books amount (titles): ${library.books.size}")
 
+    println("Current id for a new user ${User.currentUserId()}")
     library.addUser("Artur")
+    println("Current id for a new user ${User.currentUserId()}")
     println("Users: ${library.usersAmount}")
 }
