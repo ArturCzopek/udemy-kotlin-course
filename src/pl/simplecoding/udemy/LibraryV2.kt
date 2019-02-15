@@ -52,6 +52,11 @@ import java.time.LocalDateTime
  * convert Library to singleton
  */
 
+/**
+ * 5.3 - operator function to add user by modulo operator
+ * Library % "User"
+ */
+
 
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
@@ -82,6 +87,8 @@ object Library {
         get() = users.size
 
     fun addUser(name: String) = users.add(User(name))
+
+    operator fun rem(name: String) = this.addUser(name)
 }
 
 fun main(args: Array<String>) {
@@ -100,7 +107,7 @@ fun main(args: Array<String>) {
     println("Library name ${Library.name}")
 
     println("Current id for a new user ${User.currentUserId()}")
-    Library.addUser("Artur")
+    Library % "Artur"
     println("Current id for a new user ${User.currentUserId()}")
     println("Users: ${Library.usersAmount}")
 }

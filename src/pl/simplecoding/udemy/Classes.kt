@@ -59,6 +59,8 @@ object Garage {
         get() = transports.size
 
     fun getLast() = transports.last()
+
+    operator fun plus(transport: Transport) = this.addTransport(transport)
 }
 
 fun main(args: Array<String>) {
@@ -96,18 +98,18 @@ fun main(args: Array<String>) {
     println(Garage)
     val garage = Garage
     println("Are the same? ${garage === Garage}")
-    garage.addTransport(plane)
-    garage.addTransport(biggerPlane)
+    garage + plane
+    garage + biggerPlane
     println("Transports in garage ${garage.transportsInGarage}")
     println("Transports in Garage ${Garage.transportsInGarage}")
     println("Last: ${Garage.getLast()}")
 
-    Garage.addTransport(object : Transport {
+    Garage + object : Transport {
         override val company: String
             get() = "Hawk"
         override val model: String
             get() = "Black"
-    })
+    }
 
     println("Transports in garage ${garage.transportsInGarage}")
     println("Transports in Garage ${Garage.transportsInGarage}")
