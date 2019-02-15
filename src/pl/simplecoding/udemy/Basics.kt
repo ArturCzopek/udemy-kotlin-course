@@ -78,6 +78,23 @@ fun main(args: Array<String>) {
         |""".trimMargin()
     println(multilineString)
 
+    fun isEven(number: Int) = number % 2 == 0
+
+    // 3.8 - expressions - if, when
+    fun checkNumber(number: Int) = when {
+        number < 0 -> "negative number"
+        number == 0 -> "zero"
+        isEven(number) -> "is even"
+        else -> "else, probably is odd"
+    }
+
+    val evenOddMessage = if (isEven(5)) "is even" else "is odd"
+    println(evenOddMessage)
+    println(checkNumber(-3))
+    println(checkNumber(0))
+    println(checkNumber(15))
+    println(checkNumber(16))
+
 }
 
 class FunctionClass {
