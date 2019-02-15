@@ -54,4 +54,39 @@ fun main(args: Array<String>) {
     anyObject = "Now I am string"
     println(anyObject)
 
+    // 3.6 - functions
+    val functionClass = FunctionClass()
+    val fnInt = functionClass.returnsInt()
+    val fnInt2 = functionClass.expressionInt()
+    val fnMsg = functionClass.anotherString("Hello!")
+    println(fnInt)
+    println(fnInt2)
+    println(fnMsg)
+
+    topLevelFunctionReturnsUnit()
+    println(insideCalculation(2, 3))
+
+}
+
+class FunctionClass {
+    fun returnsInt(): Int {
+        return 3
+    }
+
+    fun expressionInt(): Int = 3
+
+    fun anotherString(message: String) = message
+}
+
+fun topLevelFunctionReturnsUnit() {
+    println("Hello!")
+    println("I return nothing! :(")
+}
+
+fun insideCalculation(a: Int, b: Int): Int {
+
+    fun insideFun(c: Int, d: Int) = c + d
+
+    println("Call inside")
+    return insideFun(a, b)
 }

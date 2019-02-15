@@ -40,4 +40,22 @@ fun main(args: Array<String>) {
 
     publisher = null
     println(publisher ?: "Not known")
+
+    /**
+     * 3.6 - functions
+     * function which print all data about book
+     * receives current books amount and new books amount, returns new value
+     * one top level function, one inside function
+     */
+
+    fun bookInfo(title: String, author: String, releaseYear: Int, publisher: String?) {
+        println("'" + title + "', author: " + author + ", release year: " + releaseYear + ", " + (publisher ?: "Not known"))
+    }
+
+    bookInfo(title, author, releaseYear, publisher)
+    println("Order 10 books")
+    val newOrderedBooks = orderedBooksAmount(booksInMagazine, 10)
+    println("New amount: " + newOrderedBooks)
 }
+
+fun orderedBooksAmount(currentAmount: Int, newAmount: Int)= currentAmount + newAmount
