@@ -36,4 +36,21 @@ fun main(args: Array<String>) {
     println("Length of mutable string: " + mutableString.length)
     println("Length of nullable string: " + (nullableString?.length ?:0))
 
+    // 3.4 - basic types
+    var anyNumber: Number = 1
+    anyNumber = 1.0
+    var anyInt: Int = 1
+    val bigDouble: Double = 1_000_000.333_333
+    println(anyNumber)
+    println(anyInt)
+    println(bigDouble)
+
+    val simpleArray: Array<String> = arrayOf("First", "Second")
+    println(simpleArray)
+
+    var anyObject: Any = 1
+    println(anyObject)
+    anyObject = "Now I am string"
+    println(anyObject)
+
 }
