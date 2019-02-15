@@ -49,13 +49,18 @@ fun main(args: Array<String>) {
      */
 
     fun bookInfo(title: String, author: String, releaseYear: Int, publisher: String?) {
-        println("'" + title + "', author: " + author + ", release year: " + releaseYear + ", " + (publisher ?: "Not known"))
+        println("'$title', author: $author, release year: $releaseYear, ${publisher ?: "Not known"}")
     }
 
     bookInfo(title, author, releaseYear, publisher)
     println("Order 10 books")
     val newOrderedBooks = orderedBooksAmount(booksInMagazine, 10)
-    println("New amount: " + newOrderedBooks)
+    println("New amount: $newOrderedBooks")
+
+    /**
+     * 3.7 - strings
+     * simplify string
+     */
 }
 
 fun orderedBooksAmount(currentAmount: Int, newAmount: Int)= currentAmount + newAmount

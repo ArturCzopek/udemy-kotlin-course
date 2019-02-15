@@ -66,6 +66,18 @@ fun main(args: Array<String>) {
     topLevelFunctionReturnsUnit()
     println(insideCalculation(2, 3))
 
+    // 3.7 - strings
+    val withFnIntValue = "Fn int value $fnInt"
+    println(withFnIntValue)
+    val withFnIntValueFromFunction = "Fn int value from function ${functionClass.expressionInt()}"
+    println(withFnIntValueFromFunction)
+    val multilineString = """
+        |One
+        |two
+        |three
+        |""".trimMargin()
+    println(multilineString)
+
 }
 
 class FunctionClass {
