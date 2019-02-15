@@ -10,10 +10,15 @@ fun main(args: Array<String>) {
      * increment last two
      */
 
-    val title: String = "Effective Java"
-    val author: String = "Joshua Bloch"
-    val releaseYear: Int = 2001
-    var booksInMagazine: Int = 0
+    /**
+     * 3.5 - type inference
+     * remove not needed types
+     */
+
+    val title = "Effective Java"
+    val author = "Joshua Bloch"
+    val releaseYear = 2001
+    var booksInMagazine = 0
 
     println(title)
     println(author)
