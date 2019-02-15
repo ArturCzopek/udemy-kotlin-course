@@ -68,6 +68,11 @@ import java.time.LocalDateTime
  * add book by using constructor with naming convention
  */
 
+/**
+ * 5.6 - collection functions
+ * create function which returns books released later than 2000 and sort them descending (you can add some books)
+ */
+
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
     constructor(name: String) : this(currentId, name, LocalDateTime.now()) {
@@ -81,7 +86,7 @@ data class User private constructor(val id: Long, val name: String, val created:
     }
 }
 
-class Book(val title: String, val author: String, val releaseYear: Int, var available: Boolean = true)
+data class Book(val title: String, val author: String, val releaseYear: Int, var available: Boolean = true)
 
 object Library {
 
@@ -99,6 +104,8 @@ object Library {
     fun addUser(name: String) = users.add(User(name))
 
     operator fun rem(name: String) = this.addUser(name)
+
+    infix fun getBooksReleasedAfter(releaseYear: Int) = books.filter { it.releaseYear > releaseYear }.sortedByDescending { it.releaseYear }
 }
 
 fun main(args: Array<String>) {
@@ -109,9 +116,17 @@ fun main(args: Array<String>) {
             author = "Joshua Bloch"
     )
 
+    val effectiveJava2 = Book(
+            available = false,
+            releaseYear = 2004,
+            title = "Effective Java edition 2",
+            author = "Joshua Bloch"
+    )
+
     val harryPotter = Book("Harry Potter", "J.K. Rowling", 2000)
 
     Library new effectiveJava
+    Library new effectiveJava2
     Library new harryPotter
     println("Books amount (titles): ${Library.books.size}")
     println("Library name ${Library.name}")
@@ -120,4 +135,7 @@ fun main(args: Array<String>) {
     Library % "Artur"
     println("Current id for a new user ${User.currentUserId()}")
     println("Users: ${Library.usersAmount}")
+
+    val booksAfter2000 = Library getBooksReleasedAfter 2000
+    booksAfter2000.forEach { println(it) }
 }

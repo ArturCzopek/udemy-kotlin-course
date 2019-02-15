@@ -66,6 +66,9 @@ object Garage {
 
     // 5.4 - infix & extension functions
     infix fun only(company: String) = transports.filter { it.company == company }
+
+    // 5.6 - functions on collections
+    fun getGroupedTransportsByClasses() = transports.groupBy { it::class }
 }
 
 fun main(args: Array<String>) {
@@ -133,4 +136,10 @@ fun main(args: Array<String>) {
 
     val cheapFlights = Garage only "CheapFlights"
     println("Cheap flights in garage: $cheapFlights")
+
+    Garage.getGroupedTransportsByClasses()
+            .forEach { key, value -> println("Key: ${key.simpleName}, objects: ${value.map { it.displayName() }}")}
+
+//    listOf<Transport>().add() // will not work
+
 }
