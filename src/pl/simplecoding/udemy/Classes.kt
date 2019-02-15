@@ -49,7 +49,7 @@ object Garage {
         println("Creating garage...")
     }
 
-    private val transports = mutableListOf<Transport>()
+    val transports = mutableListOf<Transport>()
 
     fun addTransport(transport: Transport) {
         transports.add(transport)
@@ -57,6 +57,8 @@ object Garage {
 
     val transportsInGarage: Int
         get() = transports.size
+
+    fun getLast() = transports.last()
 }
 
 fun main(args: Array<String>) {
@@ -98,6 +100,7 @@ fun main(args: Array<String>) {
     garage.addTransport(biggerPlane)
     println("Transports in garage ${garage.transportsInGarage}")
     println("Transports in Garage ${Garage.transportsInGarage}")
+    println("Last: ${Garage.getLast()}")
 
     Garage.addTransport(object : Transport {
         override val company: String
@@ -108,4 +111,14 @@ fun main(args: Array<String>) {
 
     println("Transports in garage ${garage.transportsInGarage}")
     println("Transports in Garage ${Garage.transportsInGarage}")
+
+    // 5.2 - smart cast, type check
+    for (transport in Garage.transports) {
+        when (transport) {
+            is FancyCar -> println("It is fancy car with price ${transport.price}")
+            is Plane -> println("It is plane with capacity of ${transport.capacity}")
+            else -> println("Transport ${transport::class}")
+        }
+    }
+
 }
