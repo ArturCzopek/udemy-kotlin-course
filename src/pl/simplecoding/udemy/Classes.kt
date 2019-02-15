@@ -1,10 +1,9 @@
 package pl.simplecoding.udemy
 
 // 4.2 basic class
-open class Car constructor(val company: String, val model: String = "Not defined") {
-    init {
-        println("Init")
-    }
+open class Car constructor(override val company: String, override val model: String = "Not defined") : Transport {    init {
+    println("Init")
+}
 
     open val fullName: String
         get() = "$company $model"
@@ -21,10 +20,19 @@ class FancyCar(company: String, model: String) : Car(company, model) {
 
 
 // 4.3 - data classes
-data class Plane(val company: String, val model: String, val capacity: Int) {
-    init {
-        println("Creating plane...")
-    }
+data class Plane(override val company: String, override val model: String, val capacity: Int) : Transport {    init {
+    println("Creating plane...")
+}
+
+    override fun displayName() = "$company $model [capacity: $capacity]"
+}
+
+// 4.4 - interfaces
+interface Transport {
+    val company: String
+    val model: String
+
+    fun displayName() = "$company $model"
 }
 
 fun main(args: Array<String>) {
@@ -45,5 +53,11 @@ fun main(args: Array<String>) {
     println(plane.capacity)
     println(biggerPlane.capacity)
 
-//    val betterCar = car.copy(...) // will not work
+//    val betterCar = car.copy(...) // will not work+
+
+    var transport: Transport = plane
+    println("Transport $transport")
+    println("Transport ${transport.displayName()}")
+    transport = car
+    println("Transport ${transport.displayName()}")
 }
