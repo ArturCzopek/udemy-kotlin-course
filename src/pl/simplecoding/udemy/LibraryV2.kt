@@ -89,6 +89,7 @@ data class User private constructor(val id: Long, val name: String, val created:
     companion object {
         private var currentId = startUserId
 
+        @JvmStatic
         fun currentUserId() = currentId
     }
 }
@@ -123,6 +124,8 @@ object Library {
     infix fun getBooksReleasedAfter(releaseYear: Int) = books.filter { it.releaseYear > releaseYear }.sortedByDescending { it.releaseYear }
 
     fun displayBooks() = books.map(Book::display).forEach(::println)
+
+    fun getUsers() = users
 }
 
 fun main(args: Array<String>) {
