@@ -155,7 +155,31 @@ fun main(args: Array<String>) {
     println(Converter().action("Test5"))
     println(Converter(converterTwo).action("Test6"))
     println(Converter { "@$it@" }.action("Test7"))
+
+    // 5.8 - destructuring
+    val personOne = DestructuringClass("Artur", "Czopek")
+    val (firstName, lastName) = personOne
+    println(firstName)
+    println(lastName)
+
+    val personTwo = MyDestructuring("Cristiano", "Ronaldo")
+    val (firstName2, lastName2) = personTwo
+
+    println(firstName2)
+    println(lastName2)
+
+    val numberMaps = mapOf(1 to "one", 2 to "two")
+    numberMaps.forEach { key, value -> println("$key: $value") }
+    numberMaps.forEach { _, value -> println("$value") }
 }
+
+data class DestructuringClass(val firstName: String, val lastName: String)
+
+class MyDestructuring(val firstName: String, val lastName: String) {
+    operator fun component1() = firstName
+    operator fun component2() = lastName
+}
+
 
 class Converter(val fn: (String) -> String = { "^$it^"}) {
     fun action(word: String) = fn(word)
