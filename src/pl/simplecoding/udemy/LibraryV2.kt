@@ -53,10 +53,15 @@ import java.time.LocalDateTime
  */
 
 /**
- * 5.3 - operator function to add user by modulo operator
+ * 5.3 - operator functions
+ * operator function to add user by modulo operator
  * Library % "User"
  */
 
+/**
+ * 5.4 - infix & extension functions
+ * create extension function "new" which add book to library
+ */
 
 data class User private constructor(val id: Long, val name: String, val created: LocalDateTime) {
 
@@ -101,8 +106,8 @@ fun main(args: Array<String>) {
 
     val harryPotter = Book("Harry Potter", "J.K. Rowling", 2000)
 
-    Library.books.add(effectiveJava)
-    Library.books.add(harryPotter)
+    Library new effectiveJava
+    Library new harryPotter
     println("Books amount (titles): ${Library.books.size}")
     println("Library name ${Library.name}")
 

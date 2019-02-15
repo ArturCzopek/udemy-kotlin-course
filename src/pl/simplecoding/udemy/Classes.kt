@@ -60,7 +60,11 @@ object Garage {
 
     fun getLast() = transports.last()
 
+    // 5.3 - operator functions
     operator fun plus(transport: Transport) = this.addTransport(transport)
+
+    // 5.4 - infix & extension functions
+    infix fun only(company: String) = transports.filter { it.company == company }
 }
 
 fun main(args: Array<String>) {
@@ -114,6 +118,9 @@ fun main(args: Array<String>) {
     println("Transports in garage ${garage.transportsInGarage}")
     println("Transports in Garage ${Garage.transportsInGarage}")
 
+    Garage.addCar(car)
+    Garage.addCar(fancyCar)
+
     // 5.2 - smart cast, type check
     for (transport in Garage.transports) {
         when (transport) {
@@ -123,4 +130,6 @@ fun main(args: Array<String>) {
         }
     }
 
+    val cheapFlights = Garage only "CheapFlights"
+    println("Cheap flights in garage: $cheapFlights")
 }
